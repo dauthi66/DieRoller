@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 namespace DieRoller
 {
     //represents a single six sided die (1-6)
-    internal class Die
+    public class Die
     {
+
+        //static field is shared across all die created
+        private static Random _random;
+        //a static constructor initializes an action on all die created before they are created
+        static Die()
+        {
+            _random = new Random();
+        }
         public Die()
         {
             Roll();
@@ -28,9 +36,17 @@ namespace DieRoller
         /// <returns>Returns a new random number 1-6</returns>
         public byte Roll()
         {
-            Random random = new();
-            byte FaceUpValue = (byte)random.Next(1, 7);
-            return FaceUpValue;
+            if (IsHeld)
+            {
+                return FaceUpValue;
+            }
+            else
+            {
+                FaceUpValue = (byte)_random.Next(1, 7);
+
+                return FaceUpValue;
+            }
+
         }
     }
 }

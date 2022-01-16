@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using DieRoller;
+
+Die testDie = new Die();
+Console.WriteLine("testing");
+Console.WriteLine(testDie.FaceUpValue);
+testDie.IsHeld = false;
+
+testDie.Roll();
+Console.WriteLine(testDie.FaceUpValue);
